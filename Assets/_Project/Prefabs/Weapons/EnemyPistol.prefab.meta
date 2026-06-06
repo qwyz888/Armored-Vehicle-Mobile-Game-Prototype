@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b12ff044810b2984f8886ccd46d34d7a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 234251
+  packageName: Bullet Master 3D
+  packageVersion: 1.0.1
+  assetPath: Assets/Bullet Master 3D/Prefabs/Weapons/EnemyPistol.prefab
+  uploadId: 540206
