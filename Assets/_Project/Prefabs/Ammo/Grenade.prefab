@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8786026236844957957}
   - component: {fileID: 7415876246520200678}
   - component: {fileID: 7312652005621606696}
+  - component: {fileID: 5342746591082246905}
   m_Layer: 0
   m_Name: Grenade
   m_TagString: Ammo
@@ -259,6 +260,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5342746591082246905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160064726684626736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64e1059d80158b48b06800819976efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  lifetime: 2
 --- !u!1001 &4457625153171646257
 PrefabInstance:
   m_ObjectHideFlags: 0
