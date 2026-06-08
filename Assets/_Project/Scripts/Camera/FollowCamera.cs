@@ -18,6 +18,8 @@ namespace Camera
 
         private void LateUpdate()
         {
+            if (target == null) return;
+
             Vector3 desiredPosition = target.position + offset;
 
             transform.position = Vector3.Lerp(
@@ -35,5 +37,12 @@ namespace Camera
                 desiredRotation,
                 rotationSmooth * Time.deltaTime);
         }
+
+        // Public API to configure camera at runtime
+        public void SetTarget(Transform t) => target = t;
+        public void SetOffset(Vector3 o) => offset = o;
+        public void SetFollowSmooth(float s) => followSmooth = s;
+        public void SetRotationSmooth(float s) => rotationSmooth = s;
+        public void SetLookAheadDistance(float d) => lookAheadDistance = d;
     }
 }

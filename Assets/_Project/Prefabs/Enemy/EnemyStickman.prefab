@@ -648,6 +648,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2666785750825826739}
   - component: {fileID: 595712266463036949}
+  - component: {fileID: 3428053264280493568}
+  - component: {fileID: 2976831030918752712}
+  - component: {fileID: 4813682164535614123}
   m_Layer: 0
   m_Name: EnemyStickman
   m_TagString: Untagged
@@ -694,6 +697,62 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3428053264280493568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265085879102140276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d366072b395db7e4989bc56b425b614f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &2976831030918752712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265085879102140276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba07e5877a335a499f9e2582e6ee1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 10
+  detectMask:
+    serializedVersion: 2
+    m_Bits: 64
+  walkSpeed: 1
+  runSpeed: 4
+  explodeDistance: 1.2
+  explosionPrefab: {fileID: 1785319222164775056, guid: 1f90e0c9469b08b4b952b634d4d8757f, type: 3}
+--- !u!136 &4813682164535614123
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265085879102140276}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.26868248
+  m_Height: 1.7973924
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9395082, z: 0.037319183}
 --- !u!1 &3611388031633294322
 GameObject:
   m_ObjectHideFlags: 0

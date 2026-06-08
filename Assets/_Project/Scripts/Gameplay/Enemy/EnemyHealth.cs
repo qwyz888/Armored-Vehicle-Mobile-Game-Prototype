@@ -15,6 +15,13 @@ namespace Gameplay.Enemy
             currentHealth = maxHealth;
         }
 
+        // allow spawner to configure health
+        public void SetMaxHealth(float value)
+        {
+            maxHealth = value;
+            currentHealth = maxHealth;
+        }
+
         public void TakeDamage(float amount)
         {
             if (currentHealth <= 0f) return;

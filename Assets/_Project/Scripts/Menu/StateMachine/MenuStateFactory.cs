@@ -21,7 +21,8 @@ namespace Menu.StateMachine
                 [typeof(LoopState)] = Resolver.Resolve<LoopState>,
 
                 //other
-                [typeof(LoadGameplayState)] = Resolver.Resolve<LoadGameplayState>
+                [typeof(LoadGameplayState)] = Resolver.Resolve<LoadGameplayState>,
+                [typeof(StartGameplayInPlaceState)] = Resolver.Resolve<StartGameplayInPlaceState>
             };
     }
 }

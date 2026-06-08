@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4546465843358668854}
   - component: {fileID: 4359077856435756979}
   - component: {fileID: 8786026236844957957}
-  - component: {fileID: 7415876246520200678}
   - component: {fileID: 7312652005621606696}
   - component: {fileID: 5342746591082246905}
   m_Layer: 0
@@ -138,31 +137,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.12
+  m_Radius: 0.3
   m_Height: 0.6214665
   m_Direction: 2
   m_Center: {x: 0, y: -0.00000008195639, z: -0.25279754}
---- !u!135 &7415876246520200678
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9160064726684626736}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &7312652005621606696
 AudioSource:
   m_ObjectHideFlags: 0
@@ -274,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   lifetime: 2
+  damage: 25
 --- !u!1001 &4457625153171646257
 PrefabInstance:
   m_ObjectHideFlags: 0

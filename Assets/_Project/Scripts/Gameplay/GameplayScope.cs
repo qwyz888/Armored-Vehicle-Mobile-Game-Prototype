@@ -4,6 +4,7 @@ using Gameplay.StateMachine.States.Core;
 using Infrastructure.Services.Window.Core;
 using Infrastructure.StateMachine.Game.States;
 using Infrastructure.StateMachine.Main.Core;
+using Menu.StateMachine.States;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -11,6 +12,7 @@ using BootstrapState = Gameplay.StateMachine.States.BootstrapState;
 using FinalizeLoadingState = Gameplay.StateMachine.States.FinalizeLoadingState;
 using LoopState = Gameplay.StateMachine.States.LoopState;
 using SaveDataState = Gameplay.StateMachine.States.SaveDataState;
+using SetupUIState = Gameplay.StateMachine.States.SetupUIState;
 
 namespace Gameplay
 {
