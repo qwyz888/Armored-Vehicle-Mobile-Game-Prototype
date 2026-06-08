@@ -49,7 +49,7 @@ namespace Infrastructure.StateMachine.Game.States
 
             _audioService.PauseAll(audio => _preferences.GroupsToPause.Contains(audio.AudioMixerGroup));
 
-            _windowService.GetOrCreateWindow(WindowID.PauseWindow).ContinueWith(window => window.Show()).Forget();
+            _windowService.GetOrCreateWindow(WindowID.SettingsWindow).ContinueWith(window => window.Show()).Forget();
         }
 
         [Serializable]

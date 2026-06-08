@@ -25,7 +25,7 @@ namespace Gameplay.StateMachine.States
 
             _timeScaleService.PauseTime();
 
-            _stateMachine.Enter<SetupLevelState>();
+            _stateMachine.Enter<SetupUIState>();
         }
     }
 }

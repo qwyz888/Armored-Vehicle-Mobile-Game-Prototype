@@ -37,7 +37,7 @@ namespace Infrastructure.StateMachine.Game.States
 
             LoadSceneState.Payload payload = new LoadSceneState.Payload
             {
-                SceneName = _staticDataModel.Config.MenuScene,
+                SceneName = _staticDataModel.Config.GameplayScene,
                 Progress = progress
             };
 

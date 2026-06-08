@@ -23,7 +23,6 @@ namespace Gameplay.StateMachine.States
 
                 //other
                 [typeof(SaveDataState)] = Resolver.Resolve<SaveDataState>,
-                [typeof(LoadMenuState)] = Resolver.Resolve<LoadMenuState>,
                 [typeof(PauseState)] = Resolver.Resolve<PauseState>,
                 [typeof(ResumeState)] = Resolver.Resolve<ResumeState>,
             };

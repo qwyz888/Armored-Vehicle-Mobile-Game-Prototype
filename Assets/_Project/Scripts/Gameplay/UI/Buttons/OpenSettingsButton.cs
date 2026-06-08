@@ -1,12 +1,12 @@
-﻿using Gameplay.StateMachine.States;
-using Gameplay.StateMachine.States.Core;
+﻿using Gameplay.StateMachine.States.Core;
+using Infrastructure.StateMachine.Game.States;
 using Infrastructure.StateMachine.Main.Core;
 using UI.Common;
 using VContainer;
 
 namespace Gameplay.UI.Buttons
 {
-    public class LoadMenuButton : BaseButton
+    public class OpenSettingsButton : BaseButton
     {
         private IStateMachine<IGameplayState> _gameplayStateMachine;
 
@@ -16,6 +16,6 @@ namespace Gameplay.UI.Buttons
             _gameplayStateMachine = gameplayStateMachine;
         }
 
-        protected override void OnClick() => _gameplayStateMachine.Enter<LoadMenuState>();
+        protected override void OnClick() => _gameplayStateMachine.Enter<PauseState>();
     }
 }

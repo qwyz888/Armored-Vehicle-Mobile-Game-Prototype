@@ -48,7 +48,7 @@ namespace Infrastructure.StateMachine.Game.States
 
             _audioService.ResumeAll(audio => _preferences.GroupsToPause.Contains(audio.AudioMixerGroup));
 
-            _windowService.GetOrCreateWindow(WindowID.PauseWindow).ContinueWith(window => window.Hide()).Forget();
+            _windowService.GetOrCreateWindow(WindowID.SettingsWindow).ContinueWith(window => window.Hide()).Forget();
 
             _stateMachine.Enter<Gameplay.StateMachine.States.LoopState>();
         }

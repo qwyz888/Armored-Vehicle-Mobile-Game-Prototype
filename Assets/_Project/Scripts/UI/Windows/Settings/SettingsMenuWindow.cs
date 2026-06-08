@@ -1,15 +1,17 @@
-﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Window.Core;
 using Infrastructure.UI.Windows.Core;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace UI.Windows.Menu
+namespace UI.Windows.Settings
 {
-    public class MenuInitialWindow : BaseNavigationalWindow, IWindow
+    public class SettingsMenuWindow : BaseNavigationalWindow, IWindow
     {
         [Header("Preferences")]
         [SerializeField] private GameObject _firstSelected;
-        [SerializeField] private GameObject _buttonsHolder;
+        [SerializeField] private Slider _soundsSlider;
+        [SerializeField] private Toggle _vibrationToggle;
 
         #region MonoBehaviour
 
@@ -40,11 +42,6 @@ namespace UI.Windows.Menu
         {
             gameObject.SetActive(false);
             ContentCanvasGroup.interactable = false;
-        }
-
-        public void SetActiveBottomButtons(bool value)
-        {
-            _buttonsHolder.SetActive(value);
         }
 
         public override void OnBecameActive()

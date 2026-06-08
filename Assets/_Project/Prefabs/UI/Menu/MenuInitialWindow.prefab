@@ -243,6 +243,7 @@ MonoBehaviour:
   _rootCanvasGroup: {fileID: 7833190955444497633}
   _contentCanvasGroup: {fileID: 7053321277314196522}
   _firstSelected: {fileID: 8337194605516274161}
+  _buttonsHolder: {fileID: 6333583447198743727}
 --- !u!114 &8203459244909425127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1499,6 +1500,8 @@ GameObject:
   - component: {fileID: 3199383838452647975}
   - component: {fileID: 2911446997994109756}
   - component: {fileID: 2187683915859676338}
+  - component: {fileID: 7850620362639708529}
+  - component: {fileID: 245632896590262484}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1607,3 +1610,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &7850620362639708529
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876484675338739403}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &245632896590262484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876484675338739403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3a5969da0825742bc9d9d1cfc8d5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _button: {fileID: 2187683915859676338}

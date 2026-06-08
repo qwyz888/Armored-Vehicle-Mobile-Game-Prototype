@@ -24,14 +24,14 @@ namespace Gameplay.StateMachine.States
         {
             _logService.Log("Gameplay.SetupUIState.Enter");
 
-            //_windowService
-            //    .CreateWindow(WindowID.GameplayInitialWindow)
-            //    .ContinueWith(window =>
-            //    {
-            //        window.Show();
-            //        _stateMachine.Enter<FinalizeLoadingState>();
-            //    })
-            //    .Forget();
+            _windowService
+                .CreateWindow(WindowID.MenuInitialWindow)
+                .ContinueWith(window =>
+                {
+                    window.Show();
+                    _stateMachine.Enter<FinalizeLoadingState>();
+                })
+                .Forget();
             _stateMachine.Enter<FinalizeLoadingState>();
         }
     }

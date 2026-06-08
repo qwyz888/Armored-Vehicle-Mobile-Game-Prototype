@@ -1,10 +1,11 @@
-﻿using Gameplay.StateMachine;
+﻿using Camera;
+using Gameplay.Level;
+using Gameplay.StateMachine;
 using Gameplay.StateMachine.States;
 using Gameplay.StateMachine.States.Core;
 using Infrastructure.Services.Window.Core;
 using Infrastructure.StateMachine.Game.States;
 using Infrastructure.StateMachine.Main.Core;
-using Menu.StateMachine.States;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -19,12 +20,20 @@ namespace Gameplay
     public class GameplayScope : LifetimeScope, IInitializable
     {
         [SerializeField] private PauseState.Preferences _pausePreferences;
-
+        [SerializeField] private LevelManager _levelManager;
+        [SerializeField] private GameplayCameraController _gameplayCameraController;
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterStateMachine(builder);
             RegisterServices(builder);
             MakeInitializable(builder);
+            RegisterSceneDependencies(builder);
+        }
+
+        private void RegisterSceneDependencies(IContainerBuilder builder)
+        {
+            builder.RegisterInstance<LevelManager>(_levelManager);
+            builder.RegisterInstance<GameplayCameraController>(_gameplayCameraController);
         }
 
         public void Initialize() => Container.Resolve<IStateMachine<IGameplayState>>().Enter<BootstrapState>();
@@ -42,14 +51,13 @@ namespace Gameplay
 
             //chained
             builder.Register<BootstrapState>(Lifetime.Singleton);
-            builder.Register<SetupLevelState>(Lifetime.Singleton);
             builder.Register<SetupUIState>(Lifetime.Singleton);
             builder.Register<FinalizeLoadingState>(Lifetime.Singleton).WithParameter(parentWindowService);
             builder.Register<LoopState>(Lifetime.Singleton);
+            builder.Register<SetupLevelState>(Lifetime.Singleton);
 
             //other
             builder.Register<SaveDataState>(Lifetime.Singleton);
-            builder.Register<LoadMenuState>(Lifetime.Singleton).WithParameter(parentWindowService);
             builder.Register<PauseState>(Lifetime.Singleton).WithParameter(_pausePreferences);
             builder.Register<ResumeState>(Lifetime.Singleton).WithParameter(_pausePreferences);
         }

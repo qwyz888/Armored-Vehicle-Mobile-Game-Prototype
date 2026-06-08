@@ -48,7 +48,7 @@ namespace Gameplay.StateMachine.States
                     _inputService.SetActive(true);
                 })
                 .Forget();
-            _stateMachine.Enter<LoopState>();
+            //_stateMachine.Enter<LoopState>();
         }
     }
 }

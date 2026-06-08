@@ -9,7 +9,6 @@ namespace Infrastructure.Data.Models.Static.Data
     {
         [Header("Scenes")]
         [SerializeField] private SceneField _bootstrapScene;
-        [SerializeField] private SceneField _menuScene;
         [SerializeField] private SceneField _gameplayScene;
 
         [Header("Log Preferences")]
@@ -17,7 +16,6 @@ namespace Infrastructure.Data.Models.Static.Data
         [SerializeField] private LogType _buildLogType = LogType.Info;
 
         public string BootstrapScene => _bootstrapScene.Name;
-        public string MenuScene => _menuScene.Name;
         public string GameplayScene => _gameplayScene.Name;
 
         public LogType LogType => Application.isEditor ? _editorLogType : _buildLogType;
