@@ -5,6 +5,7 @@ using Infrastructure.Services.Log.Core;
 using Infrastructure.StateMachine.Main.Core;
 using Infrastructure.StateMachine.Main.States.Core;
 using Cysharp.Threading.Tasks;
+using Gameplay.Car;
 
 namespace Gameplay.StateMachine.States
 {
@@ -14,13 +15,15 @@ namespace Gameplay.StateMachine.States
         private readonly ILogService _logService;
         private readonly LevelManager _levelManager;
         private readonly GameplayCameraController _gameplayCameraController;
+        private readonly VehicleController _vehicleController;
 
-        public SetupLevelState(IStateMachine<IGameplayState> stateMachine, ILogService logService, LevelManager levelManager, GameplayCameraController gameplayCameraController)
+        public SetupLevelState(IStateMachine<IGameplayState> stateMachine, ILogService logService, LevelManager levelManager, GameplayCameraController gameplayCameraController, VehicleController vehicleController)
         {
             _stateMachine = stateMachine;
             _logService = logService;
             _levelManager = levelManager;
             _gameplayCameraController = gameplayCameraController;
+            _vehicleController = vehicleController;
         }
 
         public void Enter()
@@ -31,10 +34,9 @@ namespace Gameplay.StateMachine.States
 
             if (_gameplayCameraController != null)
             {
-                var vehicle = UnityEngine.Object.FindFirstObjectByType<Gameplay.Car.VehicleController>();
-                if (vehicle != null)
+                if (_vehicleController != null)
                 {
-                    _gameplayCameraController.TransitionToFollow(vehicle.transform).Forget();
+                    _gameplayCameraController.TransitionToFollow(_vehicleController.transform).Forget();
                 }
             }
 

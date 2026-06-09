@@ -1,8 +1,16 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.Car;
+using Gameplay.Health;
+using Infrastructure.Data.Models.Persistent.Core;
+using Infrastructure.Services.Window.Core;
+using Infrastructure.Services.SaveLoad.Core;
+using Infrastructure.StateMachine.Game.States;
+using Infrastructure.StateMachine.Game.States.Core;
+using Infrastructure.StateMachine.Main.Core;
 using System;
 using UI.Windows.Gameplay;
 using UnityEngine;
+using VContainer;
 
 namespace Gameplay.Level
 {
@@ -10,7 +18,6 @@ namespace Gameplay.Level
     {
         [Header("Config")]
         [SerializeField] private LevelConfig levelConfig;
-        [SerializeField] private int levelIndex = 0;
 
         [Header("References")]
         [SerializeField] private VehicleController vehicle;
@@ -19,16 +26,39 @@ namespace Gameplay.Level
         private LevelConfig.LevelData _currentLevel;
         private float _startZ;
         private bool _isRunning;
+        private int levelIndex = 0;
 
-        private Infrastructure.Services.Window.Core.IWindowService _windowService;
-        private Gameplay.Health.HealthComponent _vehicleHealth;
-        private Infrastructure.StateMachine.Main.Core.IStateMachine<Infrastructure.StateMachine.Game.States.Core.IGameState> _gameStateMachine;
+        private IWindowService _windowService;
+        private HealthComponent _vehicleHealth;
+        private IStateMachine<IGameState> _gameStateMachine;
+        private IPersistentDataModel _persistent;
+        private ISaveLoadService _saveLoadService;
+
+        [Inject]
+        public void Construct(IWindowService windowService,
+         IStateMachine<IGameState> gameStateMachine,
+          IPersistentDataModel persistent,
+          ISaveLoadService saveLoadService)
+        {
+            _windowService = windowService;
+            _gameStateMachine = gameStateMachine;
+            _persistent = persistent;
+            _saveLoadService = saveLoadService;
+        }
 
         public void StartLevel()
         {
             if (levelConfig == null || vehicle == null || spawner == null) return;
 
+            if (_persistent != null && _persistent.Data != null && _persistent.Data.GameplayData != null)
+            {
+                int saved = _persistent.Data.GameplayData.CurrentLevelIndex;
+                levelIndex = saved;
+            }
+
             _currentLevel = levelConfig.Get(levelIndex);
+         
+            EnsureInitProgressUI().Forget();
             _startZ = vehicle.transform.position.z;
             _isRunning = true;
 
@@ -39,16 +69,31 @@ namespace Gameplay.Level
 
             MonitorLoop().Forget();
 
-            _vehicleHealth = vehicle.GetComponent<Gameplay.Health.HealthComponent>();
+            _vehicleHealth = vehicle.GetComponent<HealthComponent>();
             if (_vehicleHealth != null)
                 _vehicleHealth.OnDeath += OnVehicleDeath;
         }
 
-        [VContainer.Inject]
-        public void Construct(Infrastructure.Services.Window.Core.IWindowService windowService, Infrastructure.StateMachine.Main.Core.IStateMachine<Infrastructure.StateMachine.Game.States.Core.IGameState> gameStateMachine)
+        private async UniTaskVoid EnsureInitProgressUI()
         {
-            _windowService = windowService;
-            _gameStateMachine = gameStateMachine;
+            float deadline = Time.realtimeSinceStartup + 2f;
+            LevelProgressUI progressUI = null;
+            while (Time.realtimeSinceStartup < deadline)
+            {
+                progressUI = FindFirstObjectByType<LevelProgressUI>();
+                if (progressUI != null) break;
+                await UniTask.NextFrame();
+            }
+
+            if (progressUI != null)
+            {
+                Debug.Log($"[LevelManager] Initializing LevelProgressUI with index={levelIndex}");
+                progressUI.Initialize(levelConfig, levelIndex, vehicle);
+            }
+            else
+            {
+                Debug.Log("[LevelManager] LevelProgressUI not found to initialize");
+            }
         }
 
         public void StopLevel()
@@ -68,7 +113,29 @@ namespace Gameplay.Level
                 if (traveled >= _currentLevel.Length)
                 {
                     StopLevel();
-                    var win = await _windowService.CreateWindow(Infrastructure.Services.Window.Core.WindowID.LevelCompletedWindow);
+
+                    try
+                    {
+                        if (_persistent != null && _persistent.Data != null && _persistent.Data.GameplayData != null && levelConfig != null && levelConfig.Levels != null && levelConfig.Levels.Length > 0)
+                        {
+                            int current = _persistent.Data.GameplayData.CurrentLevelIndex;
+                            int next = (current + 1) % levelConfig.Levels.Length;
+                            _persistent.Data.GameplayData.CurrentLevelIndex = next;
+                            Debug.Log($"[LevelManager] Incremented persistent CurrentLevelIndex -> {next}");
+
+                            if (_saveLoadService != null)
+                            {
+                                _saveLoadService.Save("Data", _persistent.Data);
+                                Debug.Log("[LevelManager] Saved persistent data after level completion");
+                            }
+                        }
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError($"[LevelManager] Failed to persist next level index: {ex}");
+                    }
+
+                    var win = await _windowService.CreateWindow(WindowID.LevelCompletedWindow);
                     if (win is LevelCompletedWindow lc)
                     {
                         lc.NextLevelAction = StartNextLevel;
@@ -86,7 +153,7 @@ namespace Gameplay.Level
             StopLevel();
             if (_windowService != null)
             {
-                var win = await _windowService.CreateWindow(Infrastructure.Services.Window.Core.WindowID.LevelFailedWindow);
+                var win = await _windowService.CreateWindow(WindowID.LevelFailedWindow);
                 if (win is LevelFailedWindow lf) 
                 {
                     lf.RestartAction = RestartCurrentLevel;
@@ -97,12 +164,12 @@ namespace Gameplay.Level
 
         public void RestartCurrentLevel()
         {
-            _gameStateMachine?.Enter<Infrastructure.StateMachine.Game.States.RestartState>();
+            _gameStateMachine?.Enter<RestartState>();
         }
 
         public void StartNextLevel()
         {
-            _gameStateMachine?.Enter<Infrastructure.StateMachine.Game.States.LoadNextLevelState>();
+            _gameStateMachine?.Enter<LoadNextLevelState>();
         }
     }
 }

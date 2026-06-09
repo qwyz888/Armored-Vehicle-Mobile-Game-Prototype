@@ -24,21 +24,13 @@ namespace Infrastructure.StateMachine.Game.States
         {
             _logService.Log("Game.LoadNextLevelState.Enter");
 
-            int next = 0;
-            var cfg = UnityEngine.Resources.Load<LevelConfig>("LevelConfig");
-            if (cfg != null && cfg.Levels != null && cfg.Levels.Length > 0)
+            // simply save current persistent data (already updated by LevelManager) and reload scene
+            _stateMachine.Enter<SaveDataState, System.Action>(() =>
             {
-                int current = _persistent.Data.GameplayData != null ? _persistent.Data.GameplayData.CurrentLevelIndex : 0;
-                next = (current + 1) % cfg.Levels.Length;
-                _persistent.Data.GameplayData.CurrentLevelIndex = next;
-            }
-
-            _stateMachine.Enter<LoadSceneWithLoadingScreenState, LoadSceneWithLoadingScreenState.Payload>(
-                new LoadSceneWithLoadingScreenState.Payload
-                {
-                    SceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
-                }
-            );
+                _stateMachine.Enter<LoadSceneWithLoadingScreenState, LoadSceneWithLoadingScreenState.Payload>(
+                    new LoadSceneWithLoadingScreenState.Payload { SceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name }
+                );
+            });
         }
     }
 }

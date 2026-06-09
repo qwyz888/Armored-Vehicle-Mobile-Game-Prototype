@@ -20,8 +20,14 @@ MonoBehaviour:
     EnemyHpMin: 50
     EnemyHpMax: 100
   - LevelName: 2
-    Length: 200
+    Length: 250
     EnemySpawnInterval: 1
     MaxConcurrentEnemies: 100
-    EnemyHpMin: 80
+    EnemyHpMin: 50
+    EnemyHpMax: 100
+  - LevelName: 3
+    Length: 300
+    EnemySpawnInterval: 2
+    MaxConcurrentEnemies: 10
+    EnemyHpMin: 50
     EnemyHpMax: 100

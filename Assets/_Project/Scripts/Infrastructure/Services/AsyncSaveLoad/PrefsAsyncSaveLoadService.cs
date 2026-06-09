@@ -20,6 +20,8 @@ namespace Infrastructure.Services.AsyncSaveLoad
             string jsonData = await _jsonService.SerializeAsync(data);
 
             PlayerPrefs.SetString(key, jsonData);
+            PlayerPrefs.Save();
+            Debug.Log($"[PrefsAsyncSaveLoadService] Saved key={key} jsonLength={jsonData?.Length}");
         }
 
         public async UniTask<T> LoadAsync<T>(string key, T defaultValue = default)
@@ -32,6 +34,7 @@ namespace Infrastructure.Services.AsyncSaveLoad
                 {
                     T instance = await _jsonService.DeserializeAsync<T>(jsonData);
 
+                    Debug.Log($"[PrefsAsyncSaveLoadService] Loaded key={key} jsonLength={jsonData?.Length}");
                     if (instance == null)
                         return defaultValue;
 

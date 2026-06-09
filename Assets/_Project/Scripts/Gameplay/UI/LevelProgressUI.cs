@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using Gameplay.Car;
 using TMPro;
 using VContainer;
+using Cysharp.Threading.Tasks;
+using Infrastructure.Data.Models.Persistent.Core;
 
 public class LevelProgressUI : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class LevelProgressUI : MonoBehaviour
     private float _startZ;
     private float _levelLength = 1f;
     private string _levelName = "";
+    private IPersistentDataModel _persistent;
 
     [Inject]
     public void Construct(VehicleController vehicle)
@@ -25,8 +28,24 @@ public class LevelProgressUI : MonoBehaviour
         _vehicle = vehicle;
     }
 
-    private void Start()
+    private async void Start()
     {
+        if (_persistent != null)
+        {
+            float deadline = Time.realtimeSinceStartup + 2f;
+            while (_persistent.Data == null && Time.realtimeSinceStartup < deadline)
+            {
+                await UniTask.NextFrame();
+            }
+
+            if (_persistent.Data != null && _persistent.Data.GameplayData != null)
+            {
+                int saved = _persistent.Data.GameplayData.CurrentLevelIndex;
+                Debug.Log($"[LevelProgressUI] Reading saved CurrentLevelIndex = {saved}");
+                levelIndex = saved;
+            }
+        }
+
         ApplyConfig();
 
         if (_vehicle != null)
@@ -72,6 +91,8 @@ public class LevelProgressUI : MonoBehaviour
         levelConfig = cfg;
         levelIndex = index;
         _vehicle = veh;
+
+        Debug.Log($"[LevelProgressUI] Initialize called with index={index}");
 
         ApplyConfig();
 

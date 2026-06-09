@@ -20,6 +20,7 @@ namespace Infrastructure.Services.SaveLoad
 
             PlayerPrefs.SetString(key, jsonData);
             PlayerPrefs.Save();
+            Debug.Log($"[PrefsSaveLoadService] Saved key={key} jsonLength={jsonData?.Length}");
         }
 
         public T Load<T>(string key, T defaultValue = default)
