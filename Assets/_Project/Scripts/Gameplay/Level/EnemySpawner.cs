@@ -69,13 +69,12 @@ namespace Gameplay.Level
 
             GameObject go = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
-            // set hp if EnemyHealth exists
-            var health = go.GetComponent<EnemyHealth>();
-            if (health != null)
+            // set hp if HealthComponent exists
+            var healthComp = go.GetComponent<Gameplay.Health.HealthComponent>();
+            if (healthComp != null)
             {
                 float hp = UnityEngine.Random.Range(_levelData.EnemyHpMin, _levelData.EnemyHpMax);
-                // reflection or internal field set: EnemyHealth has private maxHealth, so try to set via property if exists, else via a method (not present). We'll try to set current via SendMessage.
-                go.SendMessage("SetMaxHealth", hp, SendMessageOptions.DontRequireReceiver);
+                healthComp.SetMaxHP(hp);
             }
 
             _activeEnemies.Add(go);

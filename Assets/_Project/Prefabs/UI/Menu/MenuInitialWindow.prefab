@@ -331,7 +331,6 @@ GameObject:
   - component: {fileID: 5281018427530769803}
   - component: {fileID: 517887277551760893}
   - component: {fileID: 3096121344906126861}
-  - component: {fileID: 7550392126135378971}
   m_Layer: 5
   m_Name: IncreaseIncomeButton (1)
   m_TagString: Untagged
@@ -570,28 +569,6 @@ MonoBehaviour:
     _scale: {x: 1, y: 1, z: 1}
     _ease: 8
     _duration: 0.1
---- !u!114 &7550392126135378971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2734684010251336412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 456c9ebff5824680b5da050b2221ab6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _button: {fileID: 517887277551760893}
 --- !u!1 &3030113684728400370
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +719,6 @@ GameObject:
   - component: {fileID: 6625505718293363443}
   - component: {fileID: 9198984366898363575}
   - component: {fileID: 6113277788005021641}
-  - component: {fileID: 185570810776088522}
   m_Layer: 5
   m_Name: AddPartButton
   m_TagString: Untagged
@@ -981,28 +957,6 @@ MonoBehaviour:
     _scale: {x: 1, y: 1, z: 1}
     _ease: 8
     _duration: 0.1
---- !u!114 &185570810776088522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317619553133158108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 456c9ebff5824680b5da050b2221ab6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  _button: {fileID: 9198984366898363575}
 --- !u!1 &3532181920798953512
 GameObject:
   m_ObjectHideFlags: 0

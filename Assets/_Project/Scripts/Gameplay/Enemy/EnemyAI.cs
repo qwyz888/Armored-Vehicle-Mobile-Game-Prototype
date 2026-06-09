@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.Enemy
 {
-    [RequireComponent(typeof(EnemyHealth))]
+    [RequireComponent(typeof(Gameplay.Health.HealthComponent))]
     public class EnemyAI : MonoBehaviour, IEnemy
     {
         [Header("Detection")]
