@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehicleTransform: {fileID: 1149824091}
   enemyPrefab: {fileID: 449399596302104242, guid: 11101654a4c452d45a53e2a5a1195d78, type: 3}
-  spawnAheadDistance: 30
+  spawnAheadDistance: 100
   spawnZoneHalfWidth: 3
 --- !u!4 &59331257
 Transform:
@@ -443,6 +443,7 @@ MonoBehaviour:
     - {fileID: 7184877114515420266, guid: d099131a584a937459ef53a6722aaeae, type: 2}
   _levelManager: {fileID: 14716092}
   _gameplayCameraController: {fileID: 125632490}
+  _vehicleController: {fileID: 1149824092}
 --- !u!4 &197489152
 Transform:
   m_ObjectHideFlags: 0

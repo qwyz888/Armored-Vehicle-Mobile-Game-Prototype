@@ -4,6 +4,7 @@ using Gameplay.StateMachine.States.Core;
 using Infrastructure.Services.Window.Core;
 using Infrastructure.StateMachine.Main.Core;
 using UI.Common;
+using UI.Windows.Menu;
 using VContainer;
 
 namespace Menu.UI.Buttons
@@ -23,7 +24,7 @@ namespace Menu.UI.Buttons
         protected override void OnClick()
         {
             if (_windowService.TryFind(WindowID.MenuInitialWindow, out IWindow menuWindow))
-                menuWindow.Hide().Forget();
+                ((MenuInitialWindow)menuWindow).SetActiveBottomButtons(false);
 
             _stateMachine.Enter<SetupLevelState>();
         }

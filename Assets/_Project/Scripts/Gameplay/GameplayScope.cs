@@ -1,4 +1,5 @@
 ﻿using Camera;
+using Gameplay.Car;
 using Gameplay.Level;
 using Gameplay.StateMachine;
 using Gameplay.StateMachine.States;
@@ -22,6 +23,7 @@ namespace Gameplay
         [SerializeField] private PauseState.Preferences _pausePreferences;
         [SerializeField] private LevelManager _levelManager;
         [SerializeField] private GameplayCameraController _gameplayCameraController;
+        [SerializeField] private VehicleController _vehicleController;
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterStateMachine(builder);
@@ -34,6 +36,7 @@ namespace Gameplay
         {
             builder.RegisterInstance<LevelManager>(_levelManager);
             builder.RegisterInstance<GameplayCameraController>(_gameplayCameraController);
+            builder.RegisterInstance<VehicleController>(_vehicleController);
         }
 
         public void Initialize() => Container.Resolve<IStateMachine<IGameplayState>>().Enter<BootstrapState>();
