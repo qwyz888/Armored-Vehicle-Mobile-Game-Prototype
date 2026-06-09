@@ -23,6 +23,8 @@ namespace Infrastructure.StateMachine.Game
 
                 //other
                 [typeof(ReloadState)] = Resolver.Resolve<ReloadState>,
+                [typeof(RestartState)] = Resolver.Resolve<RestartState>,
+                [typeof(LoadNextLevelState)] = Resolver.Resolve<LoadNextLevelState>,
                 [typeof(SaveDataState)] = Resolver.Resolve<SaveDataState>,
                 [typeof(LoadSceneState)] = Resolver.Resolve<LoadSceneState>,
                 [typeof(LoadSceneWithLoadingScreenState)] = Resolver.Resolve<LoadSceneWithLoadingScreenState>

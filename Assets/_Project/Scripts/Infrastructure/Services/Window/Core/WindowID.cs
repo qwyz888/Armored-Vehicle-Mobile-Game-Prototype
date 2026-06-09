@@ -11,5 +11,7 @@
         GameplayInitialWindow = 5,
         PauseWindow = 6,
         SettingsWindow = 7,
+        LevelFailedWindow = 8,
+        LevelCompletedWindow = 9,
     }
 }

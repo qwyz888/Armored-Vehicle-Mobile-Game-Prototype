@@ -156,6 +156,8 @@ namespace Infrastructure.VContainer.Scopes
 
             //other
             builder.Register<ReloadState>(Lifetime.Singleton);
+            builder.Register<RestartState>(Lifetime.Singleton);
+            builder.Register<LoadNextLevelState>(Lifetime.Singleton);
             builder.Register<LoadSceneState>(Lifetime.Singleton);
             builder.Register<SaveDataState>(Lifetime.Singleton);
             builder.Register<LoadSceneWithLoadingScreenState>(Lifetime.Singleton);

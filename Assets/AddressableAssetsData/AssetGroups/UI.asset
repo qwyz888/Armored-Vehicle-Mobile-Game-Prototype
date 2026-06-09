@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: UI
   m_GUID: fab20a741c5e09947ac012f22eaa1c09
   m_SerializeEntries:
+  - m_GUID: 33c512ad40d003c4188543640ccba093
+    m_Address: Assets/_Project/Prefabs/UI/Gameplay/LevelCompletedWindow.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 528aadbd64b67de459c32b0a2d3af7d9
     m_Address: Assets/_Project/Prefabs/UI/Gameplay/GameplayInitialWindow.prefab
     m_ReadOnly: 0
@@ -47,6 +52,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d9683eb2e043792448f2d742b7144d26
     m_Address: Assets/_Project/Prefabs/UI/Popups/ConfirmationPopup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed62b3812ee128647bbd4d1075d1ed51
+    m_Address: Assets/_Project/Prefabs/UI/Gameplay/LevelFailedWindow 1.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
