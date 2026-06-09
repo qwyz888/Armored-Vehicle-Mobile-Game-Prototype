@@ -7,6 +7,7 @@ namespace Gameplay.Enemy
         private EnemyAI enemy;
         private float explodeDistance;
         private GameObject explosionPrefab;
+        private float turnSpeed = 4.5f; 
 
         public EnemyStateChaseExplode(EnemyAI enemy, float explodeDistance, GameObject explosionPrefab)
         {
@@ -36,7 +37,16 @@ namespace Gameplay.Enemy
             float dist = dir.magnitude;
             dir.Normalize();
 
-            enemy.Transform.position += dir * (enemy.GetRunSpeed() * Time.deltaTime);
+            // rotate to face target on Y axis only
+            Vector3 flatDir = new Vector3(dir.x, 0f, dir.z);
+            if (flatDir.sqrMagnitude > 0.0001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(flatDir);
+                enemy.Transform.rotation = Quaternion.Slerp(enemy.Transform.rotation, targetRot, turnSpeed * Time.deltaTime);
+            }
+
+            // move forward in local forward direction (so movement follows rotation)
+            enemy.Transform.position += enemy.Transform.forward * (enemy.GetRunSpeed() * Time.deltaTime);
 
             if (dist <= explodeDistance)
             {
@@ -48,7 +58,7 @@ namespace Gameplay.Enemy
         {
             if (explosionPrefab != null)
             {
-                GameObject.Instantiate(explosionPrefab, enemy.Transform.position, Quaternion.identity);
+               var particle = GameObject.Instantiate(explosionPrefab, enemy.Transform.position, Quaternion.identity,null);
             }
             else
             {
@@ -58,7 +68,6 @@ namespace Gameplay.Enemy
                 go.AddComponent<Explosion>();
             }
 
-            // destroy enemy after explosion
             GameObject.Destroy(enemy.gameObject);
         }
     }

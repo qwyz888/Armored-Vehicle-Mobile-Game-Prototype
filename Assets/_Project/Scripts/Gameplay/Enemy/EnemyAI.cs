@@ -25,6 +25,7 @@ namespace Gameplay.Enemy
 
         public Transform Target { get; private set; }
 
+
         private void Awake()
         {
             IdleState = new EnemyStateIdle(this);
@@ -63,6 +64,8 @@ namespace Gameplay.Enemy
             CurrentState = newState;
             CurrentState?.Enter(this);
         }
+
+
 
         public float GetWalkSpeed() => walkSpeed;
         public float GetRunSpeed() => runSpeed;
