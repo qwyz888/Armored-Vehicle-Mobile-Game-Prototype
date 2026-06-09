@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 136042276132547714}
   - component: {fileID: 7596921713581466499}
   - component: {fileID: 5155573979134072760}
+  - component: {fileID: 4581766580960021369}
   m_Layer: 0
   m_Name: EnemyStickman
   m_TagString: Untagged
@@ -195,6 +196,21 @@ MonoBehaviour:
   hpSlider: {fileID: 2494872645318261506}
   showDuration: 3
   health: {fileID: 7596921713581466499}
+--- !u!114 &4581766580960021369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449399596302104242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4adc4d37c24d14d40ae4409cacb80070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDisplace: 0.5
+  maxRotation: 10
+  recoverSpeed: 6
 --- !u!1 &736513693273211319
 GameObject:
   m_ObjectHideFlags: 0

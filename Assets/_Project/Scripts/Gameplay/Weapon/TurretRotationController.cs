@@ -23,6 +23,8 @@ namespace Gameplay.Weapon
                     _currentAngle,
                     minAngle,
                     maxAngle);
+                // input handling only; actual recoil handled by TurretImpact
+                // no additional code here
             }
 
             Quaternion targetRotation =
@@ -32,6 +34,7 @@ namespace Gameplay.Weapon
                 transform.localRotation,
                 targetRotation,
                 rotationSpeed * Time.deltaTime);
+
         }
     }
 }
